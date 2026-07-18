@@ -9,6 +9,8 @@ class Ball:
         self.ball.shape("circle")
         self.ball.color("red")
         self.ball.penup()
+        self.dx = 3
+        self.dy = 3
         self.reset_position()
 
     def move(self):
@@ -36,9 +38,8 @@ class Ball:
         self.dy *= -1
 
     def reset_position(self):
-        self.ball.goto(0, 0)
-        self.dx = 2
-        self.dy = -2
-        return True
+        if self.ball.ycor() < -300:
+            self.ball.goto(0, 0)
+            return True
     
    
