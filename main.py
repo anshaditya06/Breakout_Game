@@ -16,7 +16,8 @@ window.tracer(0)  # Turn off automatic screen updates
 
 
 p = Paddle()
-b = Ball(p)
+
+
 
 
 def create_bricks():
@@ -33,12 +34,15 @@ def create_bricks():
     return bricks
 
 bricks = create_bricks()
+b = Ball(p, bricks)
+
 
 def game_loop():
     
     b.move()
     b.bounce_wall_check()
     b.paddle_collision()
+    b.brick_collision(bricks)
     b.reset_position()
 
     window.update()

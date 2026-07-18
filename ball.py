@@ -2,8 +2,9 @@ import turtle as t
 
 
 class Ball:
-    def __init__(self, paddle):
+    def __init__(self, paddle, bricks):
         self.paddle = paddle
+        self.bricks = bricks
         self.ball = t.Turtle()
         self.ball.speed(0)
         self.ball.shape("circle")
@@ -13,9 +14,11 @@ class Ball:
         self.dy = 3
         self.reset_position()
 
+    
     def move(self):
         self.ball.setx(self.ball.xcor() + self.dx)
         self.ball.sety(self.ball.ycor() + self.dy)
+    
 
     def paddle_collision(self):
         paddle_turtle = self.paddle.paddle
@@ -41,5 +44,14 @@ class Ball:
         if self.ball.ycor() < -300:
             self.ball.goto(0, 0)
             return True
-    
+        
+
+    def brick_collision(self, bricks):
+        for brick in bricks[:]:  # iterate over a copy, since we may remove items
+            if self.ball.distance(brick) < 30:
+                self.dy *= -1
+                brick.hideturtle()
+                bricks.remove(brick)
+                break  # stop checking after one hit per frame
+        
    
