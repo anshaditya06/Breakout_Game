@@ -1,4 +1,6 @@
 import turtle as t
+
+
 class Paddle:
     def __init__(self):
         self.paddle = t.Turtle()
@@ -7,7 +9,7 @@ class Paddle:
         self.paddle.color("white")
         self.paddle.shapesize(stretch_wid=1, stretch_len=5)
         self.paddle.penup()
-        self.paddle.goto(0, -250)
+        self.reset_position()
 
     def move_left(self):
         x = self.paddle.xcor()
@@ -22,4 +24,7 @@ class Paddle:
         if x > 350:  # Prevent the paddle from going off the right edge
             x = 350
         self.paddle.setx(x)
+
+    def reset_position(self):
+        self.paddle.goto(0, -250)
 

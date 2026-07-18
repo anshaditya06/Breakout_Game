@@ -1,9 +1,7 @@
 import turtle as t
 
-from paddle import Paddle
 
-
-class Ball(Paddle):
+class Ball:
     def __init__(self, paddle):
         self.paddle = paddle
         self.ball = t.Turtle()
@@ -11,11 +9,7 @@ class Ball(Paddle):
         self.ball.shape("circle")
         self.ball.color("red")
         self.ball.penup()
-        self.ball.goto(0, 0)
-        self.dx = 2
-        self.dy = -2
-
-
+        self.reset_position()
 
     def move(self):
         self.ball.setx(self.ball.xcor() + self.dx)
@@ -42,7 +36,9 @@ class Ball(Paddle):
         self.dy *= -1
 
     def reset_position(self):
-        if self.ball.ycor() < -300 or self.ball.ycor() > 300:
-            self.ball.goto(0, 0)
-            self.dx = 2
-            self.dy = -2
+        self.ball.goto(0, 0)
+        self.dx = 2
+        self.dy = -2
+        return True
+    
+   
