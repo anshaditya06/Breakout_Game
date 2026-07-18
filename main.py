@@ -79,6 +79,19 @@ def game_loop():
     window.update()
     window.ontimer(game_loop, 10)
 
+def toggle_pause():
+    global game_state
+    if game_state == "playing":
+        game_state = "paused"
+        writer.goto(0, 0)
+        writer.write("PAUSED", align="center", font=("Courier", 24, "normal"))
+    elif game_state == "paused":
+        game_state = "playing"
+        writer.clear()
+
+window.listen()
+window.onkey(toggle_pause, "space")
+
 display_start_screen()
 window.onclick(start_game)
 game_loop()
