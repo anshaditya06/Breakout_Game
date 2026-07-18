@@ -43,15 +43,19 @@ class Ball:
     def reset_position(self):
         if self.ball.ycor() < -300:
             self.ball.goto(0, 0)
+            self.dx = 3
+            self.dy = 3  # force upward, don't just flip — avoids sign bugs
             return True
+        return False
         
 
     def brick_collision(self, bricks):
-        for brick in bricks[:]:  # iterate over a copy, since we may remove items
+        for brick in bricks[:]:
             if self.ball.distance(brick) < 30:
                 self.dy *= -1
                 brick.hideturtle()
                 bricks.remove(brick)
-                break  # stop checking after one hit per frame
+                return True
+        return False
         
    
