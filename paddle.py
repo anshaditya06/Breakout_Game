@@ -14,14 +14,14 @@ class Paddle:
     def move_left(self):
         x = self.paddle.xcor()
         x -= 30
-        if x < -350:  # Prevent the paddle from going off the left edge
+        if x < -350:
             x = -350
         self.paddle.setx(x)
 
     def move_right(self):
         x = self.paddle.xcor()
         x += 30
-        if x > 350:  # Prevent the paddle from going off the right edge
+        if x > 350:
             x = 350
         self.paddle.setx(x)
 

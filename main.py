@@ -53,6 +53,17 @@ b = Ball(p, bricks)
 scoreboard = Scoreboard()
 game_state = "start"
 
+def move_left():
+    if game_state == "playing":
+        p.move_left()
+
+def move_right():
+    if game_state == "playing":
+        p.move_right()
+
+window.onkey(move_left, "Left")
+window.onkey(move_right, "Right")
+
 
 def start_game(x, y):
     global game_state
@@ -99,9 +110,7 @@ game_loop()
 
 
 
-window.listen()
-window.onkeypress(p.move_left, "Left")
-window.onkeypress(p.move_right, "Right")
+
 
 game_loop()
 window.mainloop()
