@@ -1,6 +1,7 @@
 import turtle as t
 from paddle import Paddle
 from ball import Ball
+from brick import Brick
 
 window = t.Screen()
 window.title("Breakout Game")
@@ -12,11 +13,29 @@ window.tracer(0)  # Turn off automatic screen updates
 
 
 
+
+
 p = Paddle()
 b = Ball(p)
 
-def game_loop():
 
+def create_bricks():
+    bricks = []
+    colors = ["red", "orange", "yellow", "green"]
+    start_x = -350
+    start_y = 250
+    for row in range(4):
+        for col in range(10):
+            x = start_x + col * 76
+            y = start_y - row * 25
+            brick = Brick(x, y, colors[row])
+            bricks.append(brick)
+    return bricks
+
+bricks = create_bricks()
+
+def game_loop():
+    
     b.move()
     b.bounce_wall_check()
     b.paddle_collision()
@@ -24,11 +43,6 @@ def game_loop():
 
     window.update()
     window.ontimer(game_loop, 10)
-
-
-
-
-
 
 
 
